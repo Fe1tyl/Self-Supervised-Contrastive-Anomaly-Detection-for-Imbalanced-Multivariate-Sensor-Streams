@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hai-unified-reproduction"
+version = "0.1.0"
+description = "Leakage-free HAI 21.03 anomaly-detection reproduction pipeline"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",
+  "pandas>=2.2",
+  "PyYAML>=6.0",
+  "torch>=2.5",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+iforest = ["scikit-learn==1.7.2"]
+test = ["pytest>=8"]
+
+[project.scripts]
+hai-repro = "hai_repro.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
