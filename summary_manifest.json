@@ -1,0 +1,22 @@
+[
+  {
+    "path": "model_summary.csv",
+    "bytes": 9396,
+    "sha256": "7830A101A85CAE40F81342D93A98B45B96E96892F0766CF9E42258022963A8F9"
+  },
+  {
+    "path": "seed_file_metrics.csv",
+    "bytes": 109632,
+    "sha256": "DECF9DFDC89A50DD1A404FE3D05F5D751E3F245866690884BF17E631DB6AE6FF"
+  },
+  {
+    "path": "seed_level_metrics.csv",
+    "bytes": 38941,
+    "sha256": "EC4C093B519939B51AAAEFE5E44BA7A4A3B0F8202E295686D7850A1716611B62"
+  },
+  {
+    "path": "summary_manifest.json",
+    "bytes": 1559,
+    "sha256": "D1AF03CEC473297254CB2CE36623576F3235CC5C9787CACB153E76D20113038C"
+  }
+]
