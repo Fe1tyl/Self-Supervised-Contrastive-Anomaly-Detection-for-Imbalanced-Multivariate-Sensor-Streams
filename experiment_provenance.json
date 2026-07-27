@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "experiment_intake_declaration": {
+    "status": "experiments_declared"
+  },
+  "experiment_provenance": [
+    {
+      "experiment_id": "exp-hai2103-unified-benchmark",
+      "title": "Unified HAI 21.03 normal-only benchmark and ablation rerun",
+      "repro_lock": {
+        "project": "hai_unified_reproduction",
+        "config": "hai_unified_reproduction/configs/hai2103.json",
+        "dataset_archive_sha256": "3697AF1B7ED3B653C4959535DB2B4541A1EE18104A0003DD5C5E9E3927A97B3A",
+        "summary_manifest": "hai_unified_reproduction/artifacts/summary/sha256_manifest.json",
+        "seeds": [17, 42, 2026]
+      },
+      "planned_vs_executed": [
+        {
+          "item": "Leakage-free preparation and window validation",
+          "executed": true,
+          "evidence": "hai_unified_reproduction/artifacts/formal"
+        },
+        {
+          "item": "Primary Full, TCN autoencoder, TCN predictor, contrastive-only, persistence, and Isolation Forest benchmark",
+          "executed": true,
+          "evidence": "hai_unified_reproduction/artifacts/summary/model_summary.csv"
+        },
+        {
+          "item": "Seven full-model score combinations",
+          "executed": true,
+          "evidence": "outputs/unified_revision_8695/paper_ablation_table.csv"
+        },
+        {
+          "item": "Three matched objective removals",
+          "executed": true,
+          "evidence": "outputs/unified_revision_8695/paper_ablation_table.csv"
+        },
+        {
+          "item": "Coverage-aware event metrics and threshold sensitivity",
+          "executed": true,
+          "evidence": "outputs/unified_revision_8695/paper_threshold_sensitivity.csv"
+        }
+      ],
+      "negative_results": [
+        {
+          "claim": "The full three-objective model was not the strongest controlled configuration.",
+          "result_pointer": "paper_primary_table.csv: Full three-objective model versus TCN autoencoder and TCN predictor"
+        },
+        {
+          "claim": "The contrastive-only detector was near chance and removing contrastive training improved matched Macro AP.",
+          "result_pointer": "paper_ablation_table.csv: Representation score and Remove contrastive objective"
+        },
+        {
+          "claim": "All-score fusion did not exceed reconstruction-plus-prediction scoring.",
+          "result_pointer": "paper_ablation_table.csv: Reconstruction + prediction versus All three scores"
+        }
+      ],
+      "known_limitations": [
+        "Only HAI 21.03 was evaluated.",
+        "Only three optimization seeds were run.",
+        "Recent deep baselines were not rerun under the protocol.",
+        "Contrastive augmentations, temperature, loss weights, and centroid scoring were fixed rather than tuned.",
+        "The five test files are dependent sequences from one industrial testbed."
+      ]
+    }
+  ]
+}

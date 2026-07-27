@@ -1,0 +1,78 @@
+{
+  "project_name": "hai2103_unified_reproduction",
+  "dataset": {
+    "archive": "D:/Edge Download/hai-master.zip",
+    "archive_member_prefix": "hai-master/hai-21.03",
+    "cache_dir": "data/cache/hai-21.03",
+    "train3_fit_rows": 383040,
+    "constant_feature_policy": "center_and_use_unit_scale",
+    "expected_archive_sha256": "3697AF1B7ED3B653C4959535DB2B4541A1EE18104A0003DD5C5E9E3927A97B3A",
+    "time_column": "time",
+    "label_column": "attack",
+    "label_columns": ["attack", "attack_P1", "attack_P2", "attack_P3"]
+  },
+  "window": {
+    "length": 128,
+    "fit_stride": 5,
+    "evaluation_stride": 1
+  },
+  "model": {
+    "hidden_channels": 64,
+    "embedding_dim": 64,
+    "kernel_size": 3,
+    "dilations": [1, 2, 4, 8, 16, 32],
+    "dropout": 0.1
+  },
+  "augmentation": {
+    "jitter_sigma": 0.02,
+    "temporal_mask_probability": 0.1,
+    "channel_dropout_probability": 0.1,
+    "scaling_low": 0.9,
+    "scaling_high": 1.1
+  },
+  "loss": {
+    "contrastive_weight": 1.0,
+    "reconstruction_weight": 0.5,
+    "prediction_weight": 0.5,
+    "temperature": 0.1
+  },
+  "training": {
+    "seeds": [17, 42, 2026],
+    "micro_batch_size": 128,
+    "effective_batch_size": 128,
+    "evaluation_batch_size": 256,
+    "num_workers": 0,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "warmup_fraction": 0.05,
+    "maximum_epochs": 50,
+    "early_stopping_patience": 7,
+    "mixed_precision": true,
+    "mixed_precision_dtype": "bfloat16"
+  },
+  "scoring": {
+    "mad_scale": 1.4826,
+    "epsilon": 1e-8,
+    "threshold_quantile": 0.995,
+    "threshold_grid": [0.99, 0.9925, 0.995, 0.9975, 0.999],
+    "quantile_method": "higher",
+    "decision_rule": "strict_greater"
+  },
+  "evaluation": {
+    "sampling_interval_seconds": 1.0,
+    "coverage_thresholds": [0.1, 0.5],
+    "bootstrap_repetitions": 10000
+  },
+  "baselines": {
+    "isolation_forest": {
+      "n_estimators": 200,
+      "max_samples": 4096,
+      "contamination": "auto",
+      "n_jobs": -1,
+      "window_feature_batch_size": 1024,
+      "window_features": ["mean", "std", "min", "max", "last", "delta"]
+    }
+  },
+  "artifacts_dir": "artifacts"
+}

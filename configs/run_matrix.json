@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "seeds": [17, 42, 2026],
+  "formal_neural_runs": [
+    {"model": "full", "purpose": "proposed model and score ablations"},
+    {"model": "tcn_autoencoder", "purpose": "reconstruction-only baseline"},
+    {"model": "tcn_predictor", "purpose": "prediction-only baseline"},
+    {"model": "contrastive", "purpose": "contrastive-only baseline"},
+    {
+      "model": "t_minus_contrastive",
+      "purpose": "training-objective ablation; reconstruction+prediction scores"
+    },
+    {
+      "model": "t_minus_reconstruction",
+      "purpose": "training-objective ablation; representation+prediction scores"
+    },
+    {
+      "model": "t_minus_prediction",
+      "purpose": "training-objective ablation; representation+reconstruction scores"
+    }
+  ],
+  "classical_runs": [
+    {
+      "model": "persistence",
+      "seeds": "deterministic",
+      "purpose": "sanity baseline"
+    },
+    {
+      "model": "isolation_forest",
+      "seeds": [17, 42, 2026],
+      "purpose": "classical window-feature baseline",
+      "dependency": "scikit-learn"
+    }
+  ],
+  "post_training_analyses": {
+    "full_score_combinations": [
+      "representation",
+      "reconstruction",
+      "prediction",
+      "representation+reconstruction",
+      "representation+prediction",
+      "reconstruction+prediction",
+      "representation+reconstruction+prediction"
+    ],
+    "threshold_quantiles": [0.99, 0.9925, 0.995, 0.9975, 0.999],
+    "coverage_thresholds": [0.1, 0.5]
+  },
+  "execution_policy": {
+    "parallel_gpu_runs": 1,
+    "automatic_retry": false,
+    "failed_runs_in_formal_aggregates": false,
+    "test_label_tuning": false
+  }
+}

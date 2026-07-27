@@ -1,0 +1,76 @@
+{
+  "trace_version": "1.0",
+  "entries": [
+    {
+      "artifact_id": "table_ii_unified_benchmark",
+      "source_data": {
+        "path": "hai_unified_reproduction/artifacts/summary/model_summary.csv",
+        "sha256": "7830A101A85CAE40F81342D93A98B45B96E96892F0766CF9E42258022963A8F9"
+      },
+      "transformation": {
+        "script": "work/unified_revision_8695/prepare_paper_artifacts.py",
+        "sha256": "E6A57BBD05D219F8FED20DA19812379127541F5CD45F2D3E7CAE9B058EB35D8B",
+        "output": "paper_primary_table.csv"
+      },
+      "caption_claim": "Table II reports the unified HAI 21.03 benchmark at the prespecified Q0.995 calibration threshold.",
+      "supported_manuscript_claims": [
+        {
+          "locator": "Section IV-A, paragraphs 2-3",
+          "claim": "The full model was not the strongest model; the TCN autoencoder had the highest baseline Macro AP and the TCN predictor had the highest point F1."
+        }
+      ],
+      "limitations": [
+        "The five test files are dependent sequences from one HAI system.",
+        "Only three optimization seeds were run.",
+        "The table does not compare recent deep detectors under the same protocol."
+      ]
+    },
+    {
+      "artifact_id": "table_iii_score_objective_ablation",
+      "source_data": {
+        "path": "hai_unified_reproduction/artifacts/summary/model_summary.csv",
+        "sha256": "7830A101A85CAE40F81342D93A98B45B96E96892F0766CF9E42258022963A8F9"
+      },
+      "transformation": {
+        "script": "work/unified_revision_8695/prepare_paper_artifacts.py",
+        "sha256": "E6A57BBD05D219F8FED20DA19812379127541F5CD45F2D3E7CAE9B058EB35D8B",
+        "output": "paper_ablation_table.csv"
+      },
+      "caption_claim": "Table III reports seed-level Macro AP for all full-model score combinations and the three matched objective removals.",
+      "supported_manuscript_claims": [
+        {
+          "locator": "Section IV-B, paragraphs 1-2",
+          "claim": "Reconstruction plus prediction slightly exceeded all-score fusion, and removing the contrastive objective improved matched Macro AP by 0.1268."
+        }
+      ],
+      "limitations": [
+        "Removal deltas are descriptive means over three seeds, not significance estimates.",
+        "The conclusion is specific to the declared objective weights, augmentations, and HAI release."
+      ]
+    },
+    {
+      "artifact_id": "figure_2_threshold_coverage",
+      "source_data": {
+        "path": "hai_unified_reproduction/artifacts/summary/model_summary.csv",
+        "sha256": "7830A101A85CAE40F81342D93A98B45B96E96892F0766CF9E42258022963A8F9"
+      },
+      "transformation": {
+        "script": "work/unified_revision_8695/prepare_paper_artifacts.py",
+        "sha256": "E6A57BBD05D219F8FED20DA19812379127541F5CD45F2D3E7CAE9B058EB35D8B",
+        "output": "figure2_threshold_coverage.png"
+      },
+      "caption_claim": "Figure 2 plots full-model point F1, coverage-aware event recall, and false-alarm events per normal hour across the calibration-quantile grid, with the prespecified Q0.995 threshold marked.",
+      "supported_manuscript_claims": [
+        {
+          "locator": "Section IV-B, paragraphs 3-4",
+          "claim": "Higher thresholds reduce false alarms but lower 50% coverage recall and increase detection delay."
+        }
+      ],
+      "limitations": [
+        "The threshold grid is a post hoc sensitivity analysis and does not redefine the primary operating point.",
+        "Error bars summarize only three seeds.",
+        "Detection delay is conditional on detected events."
+      ]
+    }
+  ]
+}
